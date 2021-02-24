@@ -13,7 +13,7 @@ console.log('aqui')
 console.log(process.env.MONGO_URL)
 
 mongoose
-    .connect(`mongodb://${process.env.MONGO_URL}:27017/tui-challenge`, {
+    .connect(`${process.env.MONGO_URL}`, {
         useNewUrlParser: true
     })
     .then(result => {
