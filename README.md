@@ -72,12 +72,13 @@ The api is not in the way I would like but I tried to do it in the best possible
 - Add logging to each income request and response that hits the application;  
 - Add logging to each request/response that goes throught axios or another http client;  
 - Add exception filter, because right now, the api is not protected from a failure;  
-- Add authorization, because right now the api is open to the public.
-- On the Get offers (3) endpoint, refactor the weather code. Only request weather api if it's necessary (when forecast dates match offer date). 
-- On the Booking (4) endpoint, should validate if desired offer still available 
-- Add postman or another tool
-- Env files for different environments
-- Code refactor using DRY
+- Add authorization, because right now the api is open to the public;
+- On the Get offers (3) endpoint, refactor the weather code. Only request weather api if it's necessary (when forecast dates match offer date);
+- On the Booking (4) endpoint, should validate if desired offer still available;
+- Add postman or another tool;
+- Env files for different environments;
+- Code refactor using DRY;
+- When requesting amadeus api, the auth token must be cached, so it wont get requested without really needing;
 
   
 --  
