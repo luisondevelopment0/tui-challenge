@@ -25,6 +25,7 @@ curl --location --request GET 'https://tui-challenge.herokuapp.com/locations/cit
 
 ### 3 - Get offers  
 The user can search for best or cheaper hotels
+It should include a weather object in the response. If not, maybe it's because accuWeather api quota, which is limited by a few requests per day;  
   
 Parameters:  
 ``cityCode``: The city you want to look for offers (Provided on request 2);  
