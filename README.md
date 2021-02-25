@@ -78,7 +78,7 @@ The api is not in the way I would like but I tried to do it in the best possible
 
 --  
 
-*The challenge was really fun and I would like to have a bigger time box to be able to show my knowledge better.  *
-*Hope you like it :)  *
+*The challenge was really fun and I would like to have a bigger time box to be able to show my knowledge better.*  
+*Hope you like it :)*  
   
 *Luis Fernando*
