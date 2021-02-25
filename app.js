@@ -9,7 +9,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-console.log('aqui')
 console.log(process.env.MONGO_URL)
 
 mongoose
@@ -25,8 +24,8 @@ mongoose
     });
 
 const LocationsController = require('./src/locations/locations.controller')
-const HotelsController = require('./src/hotels/hotels.controller')
-const BookingsController = require('./src/bookings/bookings.controller')
+const HotelsController = require('./src/hotels/controllers/hotels.controller')
+const BookingsController = require('./src/bookings/controllers/bookings.controller')
 
 app.use('/locations', LocationsController)
 app.use('/hotels', HotelsController)
