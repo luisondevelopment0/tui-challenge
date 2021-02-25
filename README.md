@@ -76,7 +76,9 @@ The api is not in the way I would like but I tried to do it in the best possible
 - On the Booking (4) endpoint, should validate if desired offer still available 
 - Add postman or another tool
 - Env files for different environments
+- Code refactor using DRY
 
+  
 --  
 
 *The challenge was really fun and I would like to have a bigger time box to be able to show my knowledge better.*  
