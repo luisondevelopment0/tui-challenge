@@ -75,6 +75,7 @@ The api is not in the way I would like but I tried to do it in the best possible
 - On the Get offers (3) endpoint, refactor the weather code. Only request weather api if it's necessary (when forecast dates match offer date). 
 - On the Booking (4) endpoint, should validate if desired offer still available 
 - Add postman or another tool
+- Env files for different environments
 
 --  
 
