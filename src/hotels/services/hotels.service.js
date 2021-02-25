@@ -24,6 +24,23 @@ class HotelsService {
         return response;
     }
 
+    async getCities(keyword, countryCode, limit, offset) {
+        let auth = await this.getToken()
+
+        let url = `${AMADEUS_API}/v1/reference-data/locations?subType=CITY&keyword=${keyword}&countryCode=${countryCode}&sort=analytics.travelers.score`
+
+        if (limit)
+            url += `&page%5Blimit%5D=${limit}`
+        if (offset)
+            url += `&page%5Boffset%5D=${offset}`
+
+        return await axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + auth.data.access_token
+            }
+        });
+    }
+
     async getToken() {
         let url = `${AMADEUS_API}/v1/security/oauth2/token`
 

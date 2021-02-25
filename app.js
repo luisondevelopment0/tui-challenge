@@ -15,7 +15,7 @@ mongoose
     .connect(`${process.env.MONGO_URL}`, {
         useNewUrlParser: true
     })
-    .then(result => {
+    .then(_ => {
         console.log('MongoDB Conectado');
     })
     .catch(error => {
@@ -23,7 +23,7 @@ mongoose
         console.log(error);
     });
 
-const LocationsController = require('./src/locations/locations.controller')
+const LocationsController = require('./src/locations/controllers/locations.controller')
 const HotelsController = require('./src/hotels/controllers/hotels.controller')
 const BookingsController = require('./src/bookings/controllers/bookings.controller')
 
