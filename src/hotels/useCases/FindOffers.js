@@ -22,24 +22,29 @@ module.exports = async (cityCode, ratings, priceRange, currency, limit, offset) 
                 name: h.hotel.name,
                 rating: h.hotel.rating,
                 description: h.hotel.description,
-                media: h.hotel.media
+                media: h.hotel.media,
+                cityName: h.hotel.address.cityName
             },
             offers: h.offers
         }
     })
 
-    // get all check in dates from offers
-    const checkInDates = hotels.flatMap(x => x.offers.map(y => new Date(y.checkInDate)))
-    // get the closest date
-    let date = new Date(Math.min.apply(null, checkInDates));
+    let weather = {};
 
-    // due to accuweather api quota
+    // try/catch block due to accuweather api quota
     try {
-        let weather = WeatherService.search(date, cityCode)
+        // get all check in dates from offers
+        const checkInDates = hotels.flatMap(x => x.offers.map(y => new Date(y.checkInDate)))
+        // get the closest date
+        const date = new Date(Math.min.apply(null, checkInDates));
+        // get the city name from the first hotel because they are all from the same city
+        const cityName = hotels[0].hotel.cityName
+
+        weather = await WeatherService.search(date, cityName)
     }
     catch (err) {
         console.log(err)
     }
 
-    return { success: true, result: hotels };
+    return { success: true, result: { hotels, weather } };
 };

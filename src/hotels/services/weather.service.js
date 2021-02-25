@@ -3,53 +3,40 @@
 const axios = require('axios');
 const querystring = require('querystring');
 const ACCUWEATHER_API = 'http://dataservice.accuweather.com';
+const FORECAST_MAX_DAYS = 5;
 
 class WeatherService {
 
-    async search(dates, cityCode) {
-        var dateToCompare = new Date();
-        dateToCompare.setDate(dateToCompare.getDate() + 10);
+    async search(dates, cityName) {
+        let dateToCompare = new Date();
+        dateToCompare.setDate(dateToCompare.getDate() + FORECAST_MAX_DAYS);
 
-        console.log(dates)
-        console.log(cityCode)
-        console.log(dateToCompare)
-
-        if (dateToCompare > date[1]) // not in forecast range
+        if (dateToCompare > dates[1]) // not in forecast range
             return;
 
+        const locationId = await this.getLocationId(cityName)
 
-        return;
-
-
-        //TODO: Get location id
-        let locationId = 307297
-
-        // TODO: get weather from all dates in dates array
-        // right now i'm only using the first one
-        let date = dates[0]
-
-        let url = `${ACCUWEATHER_API}/forecasts/v1/daily/10day/${locationId}?apikey=${process.env.ACCU_API_KEY}`
-        let response = await axios.get(url);
+        const url = `${ACCUWEATHER_API}/forecasts/v1/daily/5day/${locationId}?apikey=${process.env.ACCU_API_KEY}`
+        const response = await axios.get(url);
 
         let forecast = response.data.DailyForecasts.map(x => {
             return {
                 date: x.Date,
                 temperature: {
-                    Minimum: x.Temperature.Value + x.Temperature.Unit
+                    maximum: x.Temperature.Maximum.Value,
+                    minimum: x.Temperature.Minimum.Value,
+                    unit: x.Temperature.Maximum.Unit
                 },
             }
         })
-        offer.fiveDayForecast = forecast
-        console.log(offer)
 
-        for (let i = 0; i < hotels.length; i++) {
-            let offers = hotels[i].offers
+        return forecast;
+    }
 
-            for (let j = 0; j < offers.length; j++) {
-                let offer = offers[j];
-
-            }
-        }
+    async getLocationId(cityName) {
+        const url = `${ACCUWEATHER_API}/locations/v1/cities/search?q=${cityName}&apikey=${process.env.ACCU_API_KEY}`
+        const response = await axios.get(url);
+        return response.data[0].Key;
     }
 };
 

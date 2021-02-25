@@ -6,6 +6,7 @@ const GetCities = require('../useCases/GetCities')
 router.get('/countries', (_, res) => {
     const { success, message, result } = GetAvailableCountries()
 
+    // Apply DRY
     if (!success) {
         res.status(400).json({ error: [message] });
         return;
@@ -19,6 +20,7 @@ router.get('/cities', async (req, res) => {
 
     const { success, message, result } = await GetCities(keyword, countryCode, limit, offset)
 
+    // Apply DRY
     if (!success) {
         res.status(400).json({ error: [message] });
         return;
